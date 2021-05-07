@@ -1,5 +1,7 @@
 package chapter3
 
+import kotlin.math.min
+
 fun main(args: Array<String>) {
     println("2つの正の整数K,Nが与えられます。")
     println("0<=X,Y,Z<=Kを満たす整数(X,Y,Z)の組であってX+Y+Z=Nを満たすものが何通りあるかを求める")
@@ -13,8 +15,8 @@ fun main(args: Array<String>) {
 
     var Z = 0
     var count = 0
-    for (X in 0..K) {
-        for (Y in 0..K) {
+    for (X in 0..min(K, N)) {
+        for (Y in 0..min(K, N)) {
             Z = N - (X + Y)
             if (Z in 0..K) {
                 println("X = $X, Y = $Y, Z = $Z")
