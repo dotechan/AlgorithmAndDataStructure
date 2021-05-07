@@ -10,9 +10,19 @@ fun main(args: Array<String>) {
     println("> list:半角スペース区切りで2以上の整数を入力")
     val list = readLine()!!.split(" ").map { it.toInt() }
 
-    // ソート
-    val sortedList = list.sorted()
+    val INF = 20000000
+    // 線形探索
+    var worst_value = INF
+    var second_value = INF
+    repeat(N) {
+        if (list[it] < worst_value) {
+            second_value = worst_value
+            worst_value = list[it]
+        } else if (list[it] < second_value) {
+            second_value = list[it]
+        }
+    }
 
     // 結果を出力
-    println("2番目に小さい値: ${sortedList[1]}")
+    println("2番目に小さい値: ${second_value}")
 }
