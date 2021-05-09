@@ -5,9 +5,15 @@ fun main(args: Array<String>) {
     val N = readLine()!!.toInt()
 
     println(tribo(N))
+
+    repeat(N + 1) {
+        println(memo[it])
+    }
 }
 
-private fun tribo(N: Int): Int {
+private var memo: Array<Long> = Array(50) { -1L }
+
+private fun tribo(N: Int): Long {
     // ベースケース
     if (N == 0) {
         return 0
@@ -17,6 +23,9 @@ private fun tribo(N: Int): Int {
         return 1
     }
 
-    val result = tribo(N - 1) + tribo(N - 2) + tribo(N - 3)
-    return result
+    if (memo[N] != -1L) return memo[N]
+
+    memo[N] = tribo(N - 1) + tribo(N - 2) + tribo(N - 3)
+
+    return memo[N]
 }

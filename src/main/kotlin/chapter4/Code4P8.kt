@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
 }
 
 // メモ化用配列を-1で初期化する
-var memo: Array<Long> = Array(50) { -1L }
+private var memo: Array<Long> = Array(50) { -1L }
 
 private fun fibo(N: Int): Long {
     // ベースケース
