@@ -4,22 +4,28 @@ fun main(args: Array<String>) {
     println("753数（各桁の値が7,5,3のいずれかであり、かつ7,5,3がいずれも一度以上は登場する整数）")
     println("正の整数Kが与えられたときに、K以下の753数が何個あるかを求めるアルゴリズムを設計")
     println("> K:整数")
-    val K = readLine()!!.toInt()
-    val d = K.toString().length
-    println("Kの桁数d = $d")
+    val K = readLine()!!.toLong()
 
-    println("K以下の753数の個数 = ${count753(K, d)}")
+    func(K, 0, 0)
+    println("counter = $counter")
 }
 
-fun count753(K: Int, d: Int): Int {
+private var counter = 0
+private fun func(N: Long, cur: Long, use: Int) {
     // ベースケース
-    if (d == 1) {
-        return 0
-    } else if (d == 2) {
-        return 0
+    if (cur > N) return
+
+    // 7,5,3がいずれも一度以上は登場する場合
+    if (use == 0b111) {
+        counter = counter.inc()
     }
 
-    // メモ化（できれば）
+    // 現在の値に7を付け加える
+    func(N, cur * 10 + 7, use or 0b001)
 
-    // 再帰呼び出し
+    // 現在の値に5を付け加える
+    func(N, cur * 10 + 5, use or 0b010)
+
+    // 現在の値に3を付け加える
+    func(N, cur * 10 + 3, use or 0b100)
 }
